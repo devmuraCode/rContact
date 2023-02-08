@@ -7,7 +7,7 @@ export const fetchUser = createAsyncThunk(
   'user/fetchAll',
   async (_, thunkApi) => {
     try {
-        const response = await axios.get<IUser[]>('https://r-contact-backend.onrender.com/api/users')
+        const response = await axios.get<IUser[]>('https://r-contact-backend.onrender.com/api')
           return response.data
     } catch (e) {
         return thunkApi.rejectWithValue('Error')

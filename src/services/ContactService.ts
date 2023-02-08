@@ -4,7 +4,7 @@ import { IContact } from "../models/IContact";
 export const contactApi = createApi({
   reducerPath: "contactApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://r-contact-backend.onrender.com/users/",
+    baseUrl: "https://r-contact-backend.onrender.com/api",
   }),
   tagTypes: ["Contact"],
   endpoints: (build) => ({
