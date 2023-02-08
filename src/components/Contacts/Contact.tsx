@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IContact } from '../../models/IContact'
 import { contactApi } from '../../services/ContactService'
 import ContactItem from './ContactItem'
 
 const Contact = () => {
-  const { data: contacts, error, isLoading } = contactApi.useFetchAllContactsQuery(1)
+  const { data, error, isLoading } = contactApi.useFetchAllContactsQuery(1)
 
   const [deleteContact, {}] = contactApi.useDeleteContactMutation()
   const [updateContact, {}] = contactApi.useUpdateContactMutation()
@@ -14,47 +14,42 @@ const Contact = () => {
   }
   const handleUpdate = (contact: IContact) => {
     updateContact(contact)
-}
-
-  // // const [userList, setUserList] = useState<
-  // //   { fio: string; phone_number: number; email: string}[] | undefined
-  // // >(data)
-  // const [userList, setUserList] = useState(contacts)
-  // console.log(userList)
-
-  // const [text, setText] = useState('')
-
-  // const handlerClick = () => {
-  //   const findUsers =
-  //     userList && userList?.length > 0
-  //       ? userList?.filter((u) => u?.fio === text)
-  //       : undefined
-
-  //   setUserList(findUsers)
-  // }
+  }
+  const [userList, setUserList] = useState(data)
+  const [text, setText] = useState('')
+  const handlerClick = () => {
+    const findUsers =
+      userList && userList?.length > 0
+        ? userList?.filter((u) => u?.fio === text)
+        : undefined
+    setUserList(findUsers)
+  }
+  useEffect(() => {
+    setUserList(data);
+  }, [data]);
 
   return (
     <div className="wrap">
       <div className="container">
         <div className="search">
-          {/* <input
+          <input
             className="inp"
             type="text"
             placeholder="Search Contact"
             value={text}
             onChange={(e) => {
               setText(e.target.value)
-              setUserList(contacts)
+              setUserList(data)
             }}
           />
           <button disabled={!text} onClick={handlerClick} className="btn">
             Search
-          </button> */}
+          </button>
         </div>
         <div className="block">
           {isLoading && <h1>Loading...</h1>}
           {error && <h1>Error</h1>}
-          {contacts?.map((contact: IContact) => (
+          {userList?.map((contact) => (
             <div className="card" key={contact._id}>
               <div>
                 <div className="fio">
