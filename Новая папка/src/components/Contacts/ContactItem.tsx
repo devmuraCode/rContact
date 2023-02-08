@@ -19,10 +19,10 @@ const ContactItem: FC<ContactItemProps> = ({ contact, remove, update }) => {
   };
 
   return (
-    <div className="button-group">
-       {contact.fio}
+    <div className="button-group" onClick={handlerUpdate}>
+      {contact._id}. {contact.fio}
       <button onClick={handlerRemove}>Delete</button>
-      <button onClick={handlerUpdate}>Update</button>
+      {/* <button onClick={handlerUpdate}>Update</button> */}
     </div>
   );
 };

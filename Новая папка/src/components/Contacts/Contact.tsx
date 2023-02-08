@@ -16,28 +16,28 @@ const Contact = () => {
     updateContact(contact)
 }
 
-  // // const [userList, setUserList] = useState<
-  // //   { fio: string; phone_number: number; email: string}[] | undefined
-  // // >(data)
-  // const [userList, setUserList] = useState(contacts)
-  // console.log(userList)
+  // const [userList, setUserList] = useState<
+  //   { fio: string; phone_number: number; email: string}[] | undefined
+  // >(data)
+  const [userList, setUserList] = useState(contacts)
+  console.log(userList)
 
-  // const [text, setText] = useState('')
+  const [text, setText] = useState('')
 
-  // const handlerClick = () => {
-  //   const findUsers =
-  //     userList && userList?.length > 0
-  //       ? userList?.filter((u) => u?.fio === text)
-  //       : undefined
+  const handlerClick = () => {
+    const findUsers =
+      userList && userList?.length > 0
+        ? userList?.filter((u) => u?.fio === text)
+        : undefined
 
-  //   setUserList(findUsers)
-  // }
+    setUserList(findUsers)
+  }
 
   return (
     <div className="wrap">
       <div className="container">
         <div className="search">
-          {/* <input
+          <input
             className="inp"
             type="text"
             placeholder="Search Contact"
@@ -49,12 +49,12 @@ const Contact = () => {
           />
           <button disabled={!text} onClick={handlerClick} className="btn">
             Search
-          </button> */}
+          </button>
         </div>
         <div className="block">
           {isLoading && <h1>Loading...</h1>}
           {error && <h1>Error</h1>}
-          {contacts?.map((contact: IContact) => (
+          {userList?.map((contact: IContact) => (
             <div className="card" key={contact._id}>
               <div>
                 <div className="fio">

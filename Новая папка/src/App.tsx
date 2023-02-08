@@ -3,7 +3,7 @@ import AddContact from "./components/addContact/AddContacts";
 import Contact from "./components/Contacts/Contact";
 import { ContactPageAsync } from "./components/Contacts/Contact.async";
 
-function App() {  
+function App() {
   return (
     <div className="App">
       <AddContact />

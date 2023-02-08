@@ -28,7 +28,7 @@ export const contactApi = createApi({
     updateContact: build.mutation<IContact, IContact>({
       query: (post) => ({
         url: `/users/${post._id}`,
-        method: "PATCH",
+        method: "PUT",
         body: post,
       }),
       invalidatesTags: ["Contact"],
